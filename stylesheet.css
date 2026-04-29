@@ -1,15 +1,4 @@
 /* ===========================
-   ROOT VARIABLES (Theme System)
-=========================== */
-:root {
-    --primary: #00f0a8;
-    --secondary: #00c6ff;
-    --bg-dark: #0f2027;
-    --glass: rgba(255, 255, 255, 0.06);
-    --border: rgba(255, 255, 255, 0.2);
-}
-
-/* ===========================
    RESET
 =========================== */
 * {
@@ -19,202 +8,130 @@
 }
 
 /* ===========================
-   BODY + ADVANCED BG
+   BODY (Professional Theme)
 =========================== */
 body {
     font-family: "Segoe UI", sans-serif;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
     text-align: center;
-    overflow-x: hidden;
+    padding: 20px;
 
-    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #000000);
-    background-size: 400% 400%;
-    animation: bgFlow 12s ease infinite;
-}
-
-/* Animated gradient */
-@keyframes bgFlow {
-    0% { background-position: 0% }
-    50% { background-position: 100% }
-    100% { background-position: 0% }
+    background: linear-gradient(135deg, #759bd4, #b280e0);
+    color: #333;
 }
 
 /* ===========================
    TITLE
 =========================== */
 h1 {
-    font-size: clamp(28px, 5vw, 48px);
-    margin: 40px 0;
-    letter-spacing: 1px;
-    text-shadow: 0 0 20px rgba(0,255,200,0.4);
-    animation: slideDown 1s ease;
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-40px); }
-    to { opacity: 1; transform: translateY(0); }
+    font-size: clamp(26px, 5vw, 38px);
+    margin-bottom: 30px;
+    color: #222;
+    font-weight: 600;
 }
 
 /* ===========================
-   CHOICES GRID (AUTO RESPONSIVE)
+   CHOICES (3 IN ONE LINE)
 =========================== */
 .choices {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
     width: 100%;
-    max-width: 600px;
+    max-width: 420px;
+    margin: auto;
 }
 
 /* ===========================
-   CARD STYLE (ULTRA MODERN)
+   CHOICE CARD
 =========================== */
 .choice {
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    background: var(--glass);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border);
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+
+    background: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
+
     cursor: pointer;
-    position: relative;
+    transition: all 0.25s ease;
 
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-
-    animation: float 5s ease-in-out infinite;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
-/* Floating */
-@keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-}
-
-/* 3D Hover */
+/* Hover */
 .choice:hover {
-    transform: perspective(500px) rotateX(8deg) rotateY(8deg) scale(1.1);
-    box-shadow: 0 0 25px var(--primary), 0 0 60px rgba(0,255,200,0.3);
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* Gradient Border Glow */
-.choice::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #00f0a8, #00c6ff, #ff00ff);
-    z-index: -1;
-    opacity: 0;
-    transition: 0.4s;
-}
-
-.choice:hover::before {
-    opacity: 1;
-}
-
-/* Click Ripple Effect */
-.choice::after {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: rgba(255,255,255,0.5);
-    border-radius: 50%;
-    opacity: 0;
-    transform: scale(1);
-}
-
-.choice:active::after {
-    animation: ripple 0.6s ease;
-}
-
-@keyframes ripple {
-    to {
-        transform: scale(20);
-        opacity: 0;
-    }
+/* Click */
+.choice:active {
+    transform: scale(0.95);
 }
 
 /* Image */
 .choice img {
-    width: 60%;
-    transition: 0.4s;
+    width: 55%;
 }
 
-.choice:hover img {
-    transform: scale(1.2) rotate(8deg);
+/* Selected */
+.choice.selected {
+    border: 2px solid #4a90e2;
+    box-shadow: 0 0 15px rgba(74,144,226,0.4);
 }
 
 /* ===========================
-   WIN / LOSE STATES
+   WIN / LOSE
 =========================== */
 .choice.win {
-    box-shadow: 0 0 25px #00ff00, 0 0 80px #00ff0055;
+    border: 2px solid #4caf50;
 }
 
 .choice.lose {
-    box-shadow: 0 0 25px #ff0000, 0 0 80px #ff000055;
+    border: 2px solid #f44336;
 }
 
 /* ===========================
-   SCORE BOARD (GLASS CARD)
+   SCORE BOARD
 =========================== */
 .score-board {
-    margin-top: 50px;
+    margin-top: 40px;
     display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
     justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
 }
 
 .score {
-    padding: 20px 30px;
-    border-radius: 20px;
-    background: var(--glass);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background: #ffffff;
+    padding: 18px 25px;
+    border-radius: 12px;
 
-    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.score:hover {
-    transform: translateY(-5px);
-}
-
-/* Score numbers */
-#user-score, #comp-score {
-    font-size: clamp(28px, 6vw, 46px);
-    font-weight: bold;
-    color: var(--primary);
+/* Score Numbers */
+#user-score,
+#comp-score {
+    font-size: 30px;
+    font-weight: 600;
+    color: #4a90e2;
 }
 
 /* ===========================
-   MESSAGE (NEON BUTTON STYLE)
+   MESSAGE
 =========================== */
 #msg {
-    margin-top: 40px;
-    padding: 15px 35px;
-    border-radius: 50px;
-    font-size: clamp(16px, 3vw, 20px);
-    font-weight: 600;
-
-    background: linear-gradient(45deg, #00c6ff, #0072ff);
-    box-shadow: 0 0 20px rgba(0,198,255,0.6);
-
-    animation: fadeUp 0.6s ease;
-}
-
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    margin-top: 30px;
+    background: #cecece;
+    color: rgb(195, 42, 42);
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    display: inline-block;
 }
 
 /* ===========================
@@ -222,17 +139,16 @@ h1 {
 =========================== */
 @media (max-width: 480px) {
 
-    h1 {
-        margin: 20px 0;
-    }
-
     .choices {
-        gap: 20px;
+        gap: 8px;
     }
 
-    .score-board {
-        flex-direction: column;
-        gap: 20px;
+    .choice {
+        border-radius: 12px;
+    }
+
+    .choice img {
+        width: 50%;
     }
 
     #msg {
